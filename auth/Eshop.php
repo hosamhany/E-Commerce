@@ -2,7 +2,7 @@
 
 <!-- connecting the server-->
 <?php 
-
+    session_start();
     $server_name= "localhost";
     $user_name= "root";
     $password_name = "";
@@ -11,6 +11,11 @@
     if(!$conn)
     {
       die ('Connection error' .mysqli_connect_error());
+    }
+
+    if( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
+    {
+      header("Location: Home.php");
     }
 
 ?>
@@ -224,7 +229,7 @@
             <br>
             <br>
             <br>      
-            <a href="#" class="btn btn-info btn-lg" role="button">Start Shopping!</a>
+            <button href="Home.php" class="btn btn-info btn-lg" role="button">Start Shopping!</button>
         </hgroup>
 
       </div>

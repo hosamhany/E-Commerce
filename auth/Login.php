@@ -14,6 +14,7 @@ session_start();
 
 if(isset($_SESSION['user'])!="")
 {
+  $_SESSION['loggedin']= true;
  header("Location: Login.php");
 }
 if(isset($_POST['signin']))
