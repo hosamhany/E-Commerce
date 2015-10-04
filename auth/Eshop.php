@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+
+<!-- connecting the server-->
+<?php 
+
+    $server_name= "localhost";
+    $user_name= "root";
+    $password_name = "";
+    $db_name= "ecommerce";
+    $conn = mysqli_connect ($server_name, $user_name, $password_name, $db_name);
+    if(!$conn)
+    {
+      die ('Connection error' .mysqli_connect_error());
+    }
+
+?>
 <html>
 <head>
   <!-- linking the bootstrap and jquery libraries to the html file as well as the css file.-->
@@ -13,9 +28,11 @@
       <div class="container-fluid">
       <title>E-shop</title>
      
-<body>
 
 </head>
+<body>
+
+
   <!--navigation bar-->
   <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
@@ -43,6 +60,7 @@
     </div>
 </nav>
 <!-- Modal -->
+
   <div class="modal fade bs-modal-sm" id="login_signup_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
@@ -57,14 +75,16 @@
         <div id="myTabContent" class="tab-content">
         
         <div class="tab-pane fade active in" id="signin">
-            <form class="form-horizontal" action="Login.php" method= "POST">
+           
+            <form class="form-horizontal" action="Login.php" method= "POST" name="signin">
             <fieldset>
             <!-- Sign In Form -->
             <!-- Text input-->
+            
             <div class="control-group">
               <label class="control-label" for="userid">Email:</label>
               <div class="controls">
-                <input required="" id="userid" name="userid" type="text" class="form-control" placeholder="abc@abc.com" class="input-medium" required="">
+                <input type="VARCHAR" id="userid" name="email" type="text" class="form-control" placeholder="abc@abc.com" class="input-medium" required="">
               </div>
             </div>
 
@@ -72,7 +92,7 @@
             <div class="control-group">
               <label class="control-label" for="passwordinput">Password:</label>
               <div class="controls">
-                <input required="" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="********" class="input-medium">
+                <input type="VARCHAR" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="********" class="input-medium">
               </div>
             </div>
 
@@ -96,7 +116,7 @@
             </div>
             </fieldset>
             </form>
-        </div>
+        </div> 
         <!-- 
           
           -->
@@ -212,6 +232,5 @@
   </div> 
 </div>
 <form action="login.php" method= "POST" name="form" ></form>
-
 </body>
 </html>

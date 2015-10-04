@@ -1,21 +1,34 @@
 <?php
 session_start();
-include_once 'connectdb.php';
+
+    $server_name= "localhost";
+    $user_name= "root";
+    $password_name = "";
+    $db_name= "ecommerce";
+    $conn = mysqli_connect ($server_name, $user_name, $password_name, $db_name);
+    if(!$conn)
+    {
+      die ('Connection error' .mysqli_connect_error());
+    }
+
 
 if(isset($_SESSION['user'])!="")
 {
- header("Location: Eshop.php");
+ header("Location: Login.php");
 }
 if(isset($_POST['signin']))
 {
- $email = mysql_real_escape_string($_POST['email']);
- $upass = mysql_real_escape_string($_POST['pass']);
- $res=mysql_query("SELECT * FROM users WHERE email='$email'");
- $row=mysql_fetch_array($res);
- if($row['password']==md5($upass))
+ $email = ($_POST['email']);
+ $upass = ($_POST['passwordinput']);
+ $res=mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND password = '$upass' ");
+ $count = mysqli_num_rows($res);
+ $row= mysqli_fetch_array($res);
+ if($count == 1)
  {
-  $_SESSION['user'] = $row['user_id'];
-  header("Location: Eshop.php");
+  $_SESSION['user'] = $row['first_name'];
+
+  header("Location: Home.php");
+
  }
  else
  {
@@ -25,3 +38,4 @@ if(isset($_POST['signin']))
  }
  
 }
+?>
