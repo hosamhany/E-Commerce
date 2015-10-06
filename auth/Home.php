@@ -1,4 +1,5 @@
 <? session_start();
+error_reporting(0);
 ?>
 <html>
 <head>
@@ -31,9 +32,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-     <li><a class="navbar-brand title" href= "#Home">E-Shop</a></li>
-      <div class="dropdown">
-</div>
+     <a class="navbar-brand title" href= >E-Shop</a>
+   </div>
+     <div >
+        <ul class="nav navbar-nav">
+        <li ><a href="#Categories" data-id="#Categories">Categories</a></li>
+      </ul>
     </div>
    <div class="collapse navbar-collapse link-button " id="myNavbar">
    
@@ -238,8 +242,22 @@
 </div>
 
 <hr>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 <!--categories-->
-<div class= "">
+<div class= "" id ="Categories">
 	<h1>Check out what's new!</h1>
 	<div class="container">        
   <div class="row">
@@ -250,21 +268,26 @@
       </a>
     </div>
     <div class="col-md-4">
-      <a href="moustiers-sainte-marie.jpg" class="thumbnail">
+      <a href="#" class="thumbnail">
         <p class = "men">Women's.</p>
         <img src="female.jpg" alt="female" style="width:250px;height:250px">
       </a>
     </div>
     <div class="col-md-4">
-      <a href="cinqueterre.jpg" class="thumbnail">
-        <p>The Cinque Terre: A rugged portion of coast in the Liguria region of Italy.</p>      
-        <img src="cinqueterre.jpg" alt="Cinque Terre" style="width:150px;height:150px">
+      <a href="#" class="thumbnail">
+        <p class = "men">Electronics Department</p>      
+        <img src="electronics.jpg" alt="Electronics" style="width:250;height:250px">
       </a>
     </div>
   </div>
 </div>
 
 	</div>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 	</body>
 </html>

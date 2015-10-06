@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <!-- connecting the server-->
-<?php 
+<?php
+
     session_start();
     $server_name= "localhost";
     $user_name= "root";
@@ -9,9 +10,10 @@
     $db_name= "ecommerce";
     $conn = mysqli_connect ($server_name, $user_name, $password_name, $db_name);
     if(!$conn)
-    {
+    { 
 
-      die ('Connection error' .mysqli_connect_error());
+
+      die (include"ServerDown.html");
     }
 
     if( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
@@ -49,7 +51,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-     <li><a class="navbar-brand title" href= "#Home">E-Shop</a></li>
+     <a class="navbar-brand title" href= "Home.php">E-Shop</a>
       <div class="dropdown">
 </div>
     </div>
@@ -234,13 +236,14 @@
 
       </div>
     </div>
-    <div class="item slides">
+    <div class="item slides inner">
       <div class="slide-3"></div>
       <div class="hero">        
         <hgroup>
             <h1>Shop here و اشتري دماغك</h1> 
             <br>
            <a href="Home.php" class="btn btn-info btn-lg shop" >Start Shopping!</a>
+         </div>
             <br>
             <br>
         </hgroup>
