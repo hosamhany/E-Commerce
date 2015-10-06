@@ -1,6 +1,6 @@
 <?php
 session_start();
- $server_name= "localhost";
+ $server_name= "127.0.0.1";
     $user_name= "root";
     $password_name = "";
     $db_name= "ecommerce";

@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-
-<!-- connecting the server-->
 <?php 
     session_start();
-    $server_name= "localhost";
+    $server_name= "127.0.0.1";
     $user_name= "root";
     $password_name = "";
     $db_name= "ecommerce";
-    $conn = mysqli_connect ($server_name, $user_name, $password_name, $db_name);
+    $conn = mysql_connect ($server_name, $user_name, $password_name, $db_name);
     if(!$conn)
     {
 
@@ -20,6 +17,7 @@
     }
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
   <!-- linking the bootstrap and jquery libraries to the html file as well as the css file.-->
@@ -49,7 +47,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-     <li><a class="navbar-brand title" href= "#Home">E-Shop</a></li>
+     <a class="navbar-brand title" href= "#Home">E-Shop</a>
       <div class="dropdown">
 </div>
     </div>
@@ -173,7 +171,7 @@
             <div class="control-group">
               <label class="control-label" for="avatar">Profile picture:</label>
               <div class="controls">
-                <input id="avatar" class="form-control" name="avatar" type="TEXT" placeholder="No file chosen" class="input-large" required="">
+                <input id="avatar" class="form-control" name="avatar" type="TEXT" placeholder="No file chosen" class="input-large" >
               </div>
             </div>
 
