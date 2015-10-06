@@ -1,27 +1,54 @@
 <?php
 session_start();
+ $server_name= "localhost";
+    $user_name= "root";
+    $password_name = "";
+    $db_name= "ecommerce";
+    $conn = mysqli_connect ($server_name, $user_name, $password_name, $db_name);
+    if(!$conn)
+    {
+      die ('Connection error' .mysqli_connect_error());
+    }
+
 if(isset($_SESSION['user'])!="")
 {
  header("Location: home.php");
 }
-include_once 'dbconnect.php';
 
 if(isset($_POST['signup']))
 {
- $uname = mysql_real_escape_string($_POST['uname']);
- $email = mysql_real_escape_string($_POST['email']);
- $upass = md5(mysql_real_escape_string($_POST['pass']));
- 
- if(mysql_query("INSERT INTO users(email,username,password) VALUES('$uname','$email','$upass')"))
+ $fname = ($_POST['first_name']);
+ $lname = ($_POST['last_name']);
+ $email = ($_POST['email']);
+ $pass = ($_POST['password']);
+ $repass = ($_POST['repass']);
+ $avatar = ($_POST['avatar']);
+ if($pass!=$repass)
  {
-  ?>
-        <script>alert('successfully registered ');</script>
-        <?php
+ 	?>
+ 	<script>alert('Passwords do not match')</script>
+ 	
+ <?php
  }
- else
+
+ else{
+ $res = mysqli_query($conn, "INSERT INTO users(first_name, last_name, email, password, avatar) VALUES ('$fname', '$lname', '$email', '$pass', '$avatar')");
+
+ if($res)
  {
-  ?>
-        <script>alert('error while registering you...');</script>
-        <?php
- }
+
+ 		$email = ($_POST['email']);
+ 		$res=mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
+ 		$count = mysqli_num_rows($res);
+ 		$row= mysqli_fetch_array($res);
+ 		if($count == 1)
+ 		{
+  			$_SESSION['user'] = $row['first_name'] . " ". $row['last_name'];
+  			$_SESSION['loggedin']= true;
+  			header("Location: Home.php");
+
+ 		}
+ 	}
 }
+}
+?>
