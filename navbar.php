@@ -1,43 +1,4 @@
-<!DOCTYPE html>
-<?php session_start(); ?>
-<!-- connecting the server-->
-<?php 
-    $server_name= "localhost";
-    $user_name= "root";
-    $password_name = "";
-    $db_name= "ecommerce";
-    $conn = mysqli_connect ($server_name, $user_name, $password_name, $db_name);
-    if(!$conn)
-    {
-      die ('Connection error' .mysqli_connect_error());
-    }
-
-    if( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
-    {
-      header("Location: Home.php");
-    }
-
-?>
-<html>
-<head>
-  <!-- linking the bootstrap and jquery libraries to the html file as well as the css file.-->
-  <link rel="stylesheet" type="text/css" href="Eshop_css.css">
-  <meta charset="utf-8"> 
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-       <link href='https://fonts.googleapis.com/css?family=Noto+Serif&subset=latin,cyrillic-ext,vietnamese,greek-ext,greek,latin-ext' rel='stylesheet' type='text/css'>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-      <script src="myscripts.js"></script>
-      <div class="container-fluid">
-      <title>E-shop</title>
-     
-
-</head>
-<body>
-
-
-  <!--navigation bar-->
+ <!--navigation bar-->
   <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -139,9 +100,17 @@
             
             <!-- Text input-->
             <div class="control-group">
-              <label class="control-label" for="userid">Username:</label>
+              <label class="control-label" for="first_name">First name:</label>
               <div class="controls">
-                <input id="userid" name="userid" class="form-control" type="text" placeholder="User.Name" class="input-large" required="">
+                <input id="first_name" name="first_name" class="form-control" type="text" placeholder="firstname" class="input-large" required="">
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="last_name">Last name:</label>
+              <div class="controls">
+                <input id="last_name" name="last_name" class="form-control" type="text" placeholder="last_name" class="input-large" required="">
               </div>
             </div>
             
@@ -186,55 +155,3 @@
 </div>
 </br>
 <br>
-
-<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
-  <!-- Overlay -->
-  <div class="overlay"></div>
-
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-    <li data-target="#bs-carousel" data-slide-to="1"></li>
-    <li data-target="#bs-carousel" data-slide-to="2"></li>
-  </ol>
-  
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item slides active">
-      <div class="slide-1"></div>
-      <div class="hero">
-        <hgroup>
-            <h1>Too tired to shop?!</h1>        
-
-        </hgroup>
-
-      </div>
-    </div>
-    <div class="item slides">
-      <div class="slide-2"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>Can't find what you are looking for?!</h1>        
-
-        </hgroup>       
-
-      </div>
-    </div>
-    <div class="item slides">
-      <div class="slide-3"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>Shop here و اشتري دماغك</h1> 
-            <br>
-            <br>
-            <br>      
-            <button href="Home.php" class="btn btn-info btn-lg" role="button">Start Shopping!</button>
-        </hgroup>
-
-      </div>
-    </div>
-  </div> 
-</div>
-<form action="login.php" method= "POST" name="form" ></form>
-</body>
-</html>

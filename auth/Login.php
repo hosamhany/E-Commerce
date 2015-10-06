@@ -27,6 +27,7 @@ if(isset($_POST['signin']))
  if($count == 1)
  {
   $_SESSION['user'] = $row['first_name'];
+  $_SESSION['userid'] = $row['id'];
 
   header("Location: Home.php");
 

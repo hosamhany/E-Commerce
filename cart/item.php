@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<?php session_start(); ?>
-<!-- connecting the server-->
 <?php 
+	session_start();
     $server_name= "localhost";
     $user_name= "root";
     $password_name = "";
@@ -12,12 +10,12 @@
       die ('Connection error' .mysqli_connect_error());
     }
 
-    if( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
+    if( !isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false)
     {
-      header("Location: Home.php");
+      header("Location: ../auth/Login.php");
     }
-
 ?>
+
 <html>
 <head>
   <!-- linking the bootstrap and jquery libraries to the html file as well as the css file.-->
@@ -187,54 +185,23 @@
 </br>
 <br>
 
-<div class="carousel fade-carousel slide" data-ride="carousel" data-interval="4000" id="bs-carousel">
-  <!-- Overlay -->
-  <div class="overlay"></div>
+<?php
+  $item_id = $_GET['item'];
+	$query = "SELECT * FROM products WHERE id = '$item_id'";
+   ?>
+  <?php
+  echo $query;
+	$item = mysqli_query($conn,$query);
 
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#bs-carousel" data-slide-to="0" class="active"></li>
-    <li data-target="#bs-carousel" data-slide-to="1"></li>
-    <li data-target="#bs-carousel" data-slide-to="2"></li>
-  </ol>
-  
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item slides active">
-      <div class="slide-1"></div>
-      <div class="hero">
-        <hgroup>
-            <h1>Too tired to shop?!</h1>        
-
-        </hgroup>
-
-      </div>
-    </div>
-    <div class="item slides">
-      <div class="slide-2"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>Can't find what you are looking for?!</h1>        
-
-        </hgroup>       
-
-      </div>
-    </div>
-    <div class="item slides">
-      <div class="slide-3"></div>
-      <div class="hero">        
-        <hgroup>
-            <h1>Shop here و اشتري دماغك</h1> 
-            <br>
-            <br>
-            <br>      
-            <button href="Home.php" class="btn btn-info btn-lg" role="button">Start Shopping!</button>
-        </hgroup>
-
-      </div>
-    </div>
-  </div> 
-</div>
-<form action="login.php" method= "POST" name="form" ></form>
+	if(!$item) {
+		echo '<h3>Oops something went wrong</h3>';
+	}
+	else {
+    $item = mysqli_fetch_assoc($item);
+		echo '<h4>', $item['name'],'<br>';
+		echo '<small>', $item['quantity'], '</small></h4>';
+		echo '<p>', $item['details'],'</p>';
+	}
+?>
 </body>
 </html>
