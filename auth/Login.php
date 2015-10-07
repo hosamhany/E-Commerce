@@ -35,6 +35,7 @@ if(isset($_POST['signin']))
  $row= mysqli_fetch_array($res);
  if($count == 1)
  {
+  $_SESSION['id'] = $row['id'];
   $_SESSION['user'] = $row['first_name'] . " ". $row['last_name'];
   $_SESSION['loggedin']= true;
 
