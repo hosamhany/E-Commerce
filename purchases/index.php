@@ -184,9 +184,12 @@
 </div>
 </br>
 <br>
+
+<h4>Your purchases history</h4>
+<hr>
 <?php
-	// $userid = $_SESSION['userid'];
-	$query = "SELECT * FROM products";
+	$userid = $_SESSION['userid'];
+	$query = "SELECT * FROM bought, products WHERE products.id = bought.product_id AND bought.buyer_id = ".$userid;
 	$purchases = mysqli_query($conn, $query);
 	if(!$purchases) {
 		echo "Oops, Something went wrong";
@@ -196,7 +199,6 @@
 		while($item = mysqli_fetch_assoc($purchases)) {
 			echo '<li>';
 			echo '<a href="../item.php?product_id='.$item['id'].'"><h4>'.$item['name'].'</h4></a>';
-			echo '<h6>'.$item['price'].'</h6>';
 			echo '<p>'.$item['details'].'</p>';
 			echo '</li>';
 		}

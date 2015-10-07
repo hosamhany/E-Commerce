@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
 <!-- connecting the server-->
-<?php 
+<?php
+    session_start();
     $server_name= "localhost";
     $user_name= "root";
     $password_name = "";
     $db_name= "ecommerce";
     $conn = mysqli_connect ($server_name, $user_name, $password_name, $db_name);
     if(!$conn)
-    {
-      die ('Connection error' .mysqli_connect_error());
+    { 
+
+
+      die (include"ServerDown.html");
     }
 
     if( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
@@ -47,13 +49,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-     <li><a class="navbar-brand title" href= "#Home">E-Shop</a></li>
+     <a class="navbar-brand title" href= "Home.php">E-Shop</a>
       <div class="dropdown">
 </div>
     </div>
-   <div class="collapse navbar-collapse link-button" id="myNavbar">
+   <div class="collapse navbar-collapse " id="myNavbar">
    
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right glyphs">
 
          <li> <button class="btn btn-link glyphicon glyphicon-log-in btn-md"role="link" type="submit" name="op" data-toggle="modal" data-target="#login_signup_modal" id="signin" value="Link 1"> Login</button> </li>
 
@@ -63,6 +65,7 @@
       </ul>
     </div>
 </nav>
+
 <!-- Modal -->
 
   <div class="modal fade bs-modal-sm" id="login_signup_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -72,7 +75,7 @@
         <div class="bs-example bs-example-tabs">
             <ul id="myTab" class="nav nav-tabs">
               <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
-              <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+              <li class=""><a href="#signup" data-toggle="tab">Signup</a></li>
             </ul>
         </div>
       <div class="modal-body">
@@ -96,7 +99,7 @@
             <div class="control-group">
               <label class="control-label" for="passwordinput">Password:</label>
               <div class="controls">
-                <input type="VARCHAR" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="********" class="input-medium">
+                <input type="password" id="passwordinput" name="passwordinput" class="form-control" type="password" placeholder="********" class="input-medium">
               </div>
             </div>
 
@@ -124,28 +127,33 @@
         <!-- 
           
           -->
-        <div class="tab-pane fade" id="signup">
-            <form class="form-horizontal" action="Signup.php" method= "POST">
+  <div class="tab-pane fade" id="signup">
+            <form class="form-horizontal" action="Signup.php" method= "POST" name = "signup">
             <fieldset>
             <!-- Sign Up Form -->
+            
             <!-- Text input-->
+            <div class="control-group">
+              <label class="control-label" for="firstname">First Name:</label>
+              <div class="controls">
+                <input id="first_name" name="first_name" class="form-control" type="VARCHAR" placeholder="Tommy" class="input-large" required="">
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <label class="control-label" for="lastname">Last Name:</label>
+              <div class="controls">
+        <input id="last_name" name="last_name" class="form-control" type="VARCHAR" placeholder="Emanuel" class="input-large" required="">
+              </div>
+            </div>
 
             <div class="control-group">
-              <label class="control-label" for="Email">Email:</label>
+              <label class="control-label" for="email">Email:</label>
               <div class="controls">
-                <input id="Email" name="Email" class="form-control" type="text" placeholder="abc@abc.com" class="input-large" required="">
+                <input id="email" class="form-control" name="email" type="VARCHAR" placeholder="tommy.emanuel@example.com" class="input-large" required="">
               </div>
             </div>
-            
-            <!-- Text input-->
-            <div class="control-group">
-              <label class="control-label" for="userid">Username:</label>
-              <div class="controls">
-                <input id="userid" name="userid" class="form-control" type="text" placeholder="User.Name" class="input-large" required="">
-              </div>
-            </div>
-            
-            <!-- Password input-->
+
             <div class="control-group">
               <label class="control-label" for="password">Password:</label>
               <div class="controls">
@@ -158,16 +166,22 @@
             <div class="control-group">
               <label class="control-label" for="reenterpassword">Re-Enter Password:</label>
               <div class="controls">
-                <input id="reenterpassword" class="form-control" name="reenterpassword" type="password" placeholder="********" class="input-large" required="">
+                <input id="repass" class="form-control" name="repass" type="password" placeholder="********" class="input-large" required="">
               </div>
             </div>
           
-            
-            <!-- Button -->
             <div class="control-group">
+              <label class="control-label" for="avatar">Profile picture:</label>
+              <div class="controls">
+                <input id="avatar" class="form-control" name="avatar" type="TEXT" placeholder="No file chosen" class="input-large" required="">
+              </div>
+            </div>
+
+            <!-- Button -->
+              <div class="control-group">
               <label class="control-label" for="confirmsignup"></label>
               <div class="controls">
-                <button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>
+                <button id="signup" name="signup" type = "submit"class="btn btn-success">Sign Up</button>
               </div>
             </div>
             </fieldset>
@@ -220,21 +234,23 @@
 
       </div>
     </div>
-    <div class="item slides">
+    <div class="item slides inner">
       <div class="slide-3"></div>
       <div class="hero">        
         <hgroup>
             <h1>Shop here و اشتري دماغك</h1> 
             <br>
+           <a href="Home.php" class="btn btn-info btn-lg shop" >Start Shopping!</a>
+         </div>
             <br>
-            <br>      
-            <button href="Home.php" class="btn btn-info btn-lg" role="button">Start Shopping!</button>
+            <br>
         </hgroup>
 
       </div>
     </div>
   </div> 
 </div>
-<form action="login.php" method= "POST" name="form" ></form>
 </body>
+           
+
 </html>

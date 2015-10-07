@@ -12,7 +12,7 @@
 
     if( !isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false)
     {
-      header("Location: ../auth/Login.php");
+      header("Location: auth/Login.php");
     }
 ?>
 
@@ -196,7 +196,7 @@
 	else {
     $item = mysqli_fetch_assoc($item);
 		echo '<h4>', $item['name'],'<br>';
-		echo '<small>', $item['quantity'], '</small></h4>';
+		echo '<small>$', $item['price'], '</small></h4>';
 		echo '<p>', $item['details'],'</p>';
 	}
 ?>
@@ -211,7 +211,7 @@ aria-labelledby="mySmallModalLabel" aria-hidden="true">
       <div class="modal-body">
         <h5><?php echo $item['name']; ?></h5>
         <hr>
-        <?php echo $item['quantity']; ?>
+        <?php echo '$'.$item['price']; ?>
         <div id="confirm"></div>
       </div>
     </div>
@@ -223,19 +223,23 @@ aria-labelledby="mySmallModalLabel" aria-hidden="true">
   function purchaseItem() {
     var quantity = <?php echo $item['quantity']; ?>;
     document.getElementById("confirm").innerHTML = 
-    (quantity > 10)? "<button href='/auth/Eshop.php'>YES</button>"
+    (quantity > 0)? "<button href='/auth/Eshop.php' onclick='purchase("+<?php echo $item['id']?>+")'>YES</button>"
     : "<p>We're out of stock for this item</p>";
+  }
+
+  function purchase(p_id){
+    console.log(p_id);
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      window.location.href = 'purchases/';
+      // document.getElementById('body').innerHTML = xhttp.responseText;
+    }
+    xhttp.open("POST", "purchases/purchase.php?product_id="+p_id,true);
+    xhttp.send();
   }
 </script>
 <?php
-  function purchase(){
-    if($item['quantity'] == 10) {
-      echo "<script>alert('We\'re out of stock for this item');</script>";
-      return false;
-    }
-
-    return true;
-  }
+  
 ?>
 </body>
 </html>

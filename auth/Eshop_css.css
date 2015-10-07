@@ -1,13 +1,10 @@
 .link_button{
-	padding-top: 100px;
+	padding-top: 10px;
 }
 
-/*
-Fade content bs-carousel with hero headers
-Code snippet by maridlcrmn (Follow me on Twitter @maridlcrmn) for Bootsnipp.com
-Image credits: unsplash.com
-*/
-
+.shop{
+  z-index: 4;
+}
 /********************************/
 /*       Fade Bs-carousel       */
 /********************************/

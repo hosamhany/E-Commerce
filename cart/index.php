@@ -185,32 +185,48 @@
 </br>
 <br>
 
-<?php
-	$userid = $_SESSION['userid'];
-	$query = "SELECT product_id FROM cart WHERE buyer_id = $userid";
-	$product_ids = mysqli_query($conn, $query);
-	if(!$product_ids) {
-		echo '<h3>Oops something went wrong</h3>';
-	}
-	else {
-		echo '<h3> Your Cart</h3><hr>';
-		while($p_id = mysqli_fetch_assoc($product_ids)) {
-			$p_id = $p_id['product_id'];
-			$query = "SELECT * FROM products WHERE id = $p_id";
-			$item = mysqli_query($conn, $query);
-			if(!$item) {
-						echo '<h4>Oops something went wrong</h4>';
-			}
-			else {
-				$item = mysqli_fetch_assoc($item);
-				echo '<h5>', $item['name'],'<br>';
-				echo '<small>', $item['quantity'], ' left</small></h5>';
-				echo '<p>', (strlen($item['details']) > 20)? 
-				substr($item['details'],0,20)."...<a href=\"../item.php?product_id=$p_id\">
-				More</a>" : $item['details'],'</p>';
-			}
+<div id="cart-container"></div>
+	
+	<script>
+		function confirmDelete(p_id) {
+			var xhttp = new XMLHttpRequest();
+			// xhttp.onreadystatechange = function() {
+			// 	document.getElementById('remove_item').innerHTML += p_id;
+			// }
+			xhttp.open("GET","/?product_id="+p_id,true);
+			xhttp.send();
 		}
-	}
-?>
+
+		function deleteItem(p_id) {
+			var xhttp = new XMLHttpRequest();
+			<?php
+				// $product_id = $_GET['product_id'];
+				// $userid = $_SESSION['userid'];
+				// $query = "DELETE FROM product WHERE buyer_id = ".$userid." AND product_id = ".$product_id;
+				// mysqli_query($conn, $query);
+			?>
+			xhttp.onreadystatechange = function() {
+				// document.getElementById('remove_item').innerHTML = xhttp.responseText;
+				// xhttp.open("GET", "", true);
+				// xhttp.send();
+				// loadCart();
+				// $('delete_item').modal('toggle');
+				location.reload();	
+			}
+			xhttp.open("GET", "delete.php?product_id="+p_id, true);
+			xhttp.send();
+
+		}
+		function loadCart() {
+			console.log('loading cart...\n');
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange =function() {
+				document.getElementById('cart-container').innerHTML = xhttp.responseText;
+			};
+			xhttp.open("GET", "get_cart.php", true);
+			xhttp.send();
+		}
+		$(document).ready(loadCart());
+	</script>
 </body>
 </html>
