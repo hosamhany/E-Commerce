@@ -191,18 +191,32 @@
 	$item = mysqli_query($conn,$query);
 
 	if(!$item) {
-		echo '<h3>Oops something went wrong</h3>';
+		?> <script>alert('Oops something went wrong');</script>
+    <?php
 	}
 	else {
     $item = mysqli_fetch_assoc($item);
-		echo '<h4>', $item['name'],'<br>';
-		echo '<small>$', $item['price'], '</small></h4>';
-		echo '<p>', $item['details'],'</p>';
+    if($item) {
+      
+		  echo '<h4>', $item['name'],'<br>';
+		  echo '<small>$', $item['price'], '</small></h4>';
+		  echo '<p>', $item['details'],'</p>';
+      ?>
+      <button onclick='purchaseItem()' class="btn btn-link"
+      role="link" type="submit"  data-toggle="modal" data-target="#purchase_modal">Purchase Now!</button>
+      <?php
+   }
+   else {
+    ?>
+      <script>alert('Sorry, this item is not found');</script>
+      <br><br>
+      <a href="auth/Home.php#Categories" class="btn btn-primary">Categories</a>
+    <?php
+   }
 	}
 ?>
 
-<button onclick='purchaseItem()' class="btn btn-link"
-role="link" type="submit"  data-toggle="modal" data-target="#purchase_modal">Purchase Now!</button>
+
 
 <div class="modal fade bs-modal-sm" id="purchase_modal" role="dialog" 
 aria-labelledby="mySmallModalLabel" aria-hidden="true">

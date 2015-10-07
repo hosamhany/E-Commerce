@@ -36,7 +36,7 @@ error_reporting(0);
    </div>
      <div >
         <ul class="nav navbar-nav">
-        <li ><a href="#Categories" data-id="#Categories">Categories</a></li>
+        <a href="#Categories" data-id="#Categories">Categories</a>
       </ul>
     </div>
    <div class="collapse navbar-collapse link-button " id="myNavbar">
