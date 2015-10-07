@@ -130,7 +130,7 @@
           
           -->
   <div class="tab-pane fade" id="signup">
-            <form class="form-horizontal" action="Signup.php" method= "POST" name = "signup">
+            <form class="form-horizontal" enctype="multipart/form-data" action="Signup.php" method= "POST" name = "signup">
             <fieldset>
             <!-- Sign Up Form -->
             
@@ -175,7 +175,7 @@
             <div class="control-group">
               <label class="control-label" for="avatar">Profile picture:</label>
               <div class="controls">
-                <input id="avatar" class="form-control" name="avatar" type="TEXT" placeholder="No file chosen" class="input-large" required="">
+                <input id="avatar" class="form-control" name="avatar" required type="file" placeholder="No file chosen" class="input-large" required="">
               </div>
             </div>
 

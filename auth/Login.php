@@ -38,6 +38,7 @@ if(isset($_POST['signin']))
   $_SESSION['id'] = $row['id'];
   $_SESSION['user'] = $row['first_name'] . " ". $row['last_name'];
   $_SESSION['loggedin']= true;
+  $_SESSION['avatar'] = $row['avatar'];
 
   include"Home.php";
 

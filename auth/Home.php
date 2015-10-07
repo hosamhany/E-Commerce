@@ -44,8 +44,11 @@ error_reporting(0);
       <ul class="nav navbar-nav navbar-right welcome"> 
 			<?php
 
-			if(isset($_SESSION['user'])!="" && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
-			{echo "Welcome, " . $_SESSION['user']  ." !";
+			if(isset($_SESSION['user'])!="" && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+        ?>
+      <a href ="update.php"> <?php 
+
+			echo "Welcome, " . $_SESSION['user']  ." !";
 
 				?>
 				<?php
@@ -175,7 +178,7 @@ error_reporting(0);
           	<div class="control-group">
               <label class="control-label" for="avatar">Profile picture:</label>
               <div class="controls">
-                <input id="avatar" class="form-control" name="avatar" type="TEXT" placeholder="No file chosen" class="input-large" required="">
+                <input id="avatar" class="form-control" name="avatar" required type="file" placeholder="No file chosen" class="input-large" required="">
               </div>
             </div>
 

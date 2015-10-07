@@ -1,5 +1,17 @@
 <?php
+
 session_start();
+
+
+/*function GetImageExtension($imagetype) {
+  switch($imagetype) {
+    case 'image/bmp': return '.bmp';
+    case 'image/gif': return '.gif';
+    case 'image/jpeg': return '.jpg';
+    case 'image/png': return '.png';
+    default: return false;
+  }
+}*/
  $server_name= "localhost";
     $user_name= "root";
     $password_name = "";
@@ -23,7 +35,7 @@ if(isset($_POST['signup']))
  $email = ($_POST['email']);
  $pass =   md5(($_POST['password']));
  $repass = ($_POST['repass']);
- $avatar = ($_POST['avatar']);
+ //$avatar = ($_FILES['avatar']['tmp_name']);
  if($_POST['password']!=$_POST['repass'])
  {
  	?>
@@ -86,9 +98,11 @@ if(isset($_POST['signup']))
  			exit(include'Home.php');
 	}
 		
-	
+
+      $res = mysqli_query($conn, "INSERT INTO users(first_name, last_name, email, password, avatar) VALUES ('$fname', '$lname', '$email', '$pass', '$avatar')");
+  
  	
- $res = mysqli_query($conn, "INSERT INTO users(first_name, last_name, email, password, avatar) VALUES ('$fname', '$lname', '$email', '$pass', '$avatar')");
+ 
 
  if($res)
  {
