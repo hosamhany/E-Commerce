@@ -226,6 +226,17 @@
 			xhttp.open("GET", "get_cart.php", true);
 			xhttp.send();
 		}
+
+		function checkout() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				// document.getElementById('cart-container').innerHTML = '<br><br><br><br>'+xhttp.responseText;
+				alert('Your purchase is successful. Thank you for using our service!');
+				location.href = "../auth/Home.php";
+			}
+			xhttp.open("GET", "checkout.php", true);
+			xhttp.send();
+		}
 		$(document).ready(loadCart());
 	</script>
 </body>

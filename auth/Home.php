@@ -262,19 +262,19 @@ error_reporting(0);
 	<div class="container">        
   <div class="row">
     <div class="col-md-4">
-      <a href="#" class="thumbnail">
+      <a href="../categories/men.php" class="thumbnail">
         <p class = "men">Men's.</p>    
         <img src="formal.jpg" alt="men" style="width:250px;height:250px">
       </a>
     </div>
     <div class="col-md-4">
-      <a href="#" class="thumbnail">
+      <a href="../categories/women.php" class="thumbnail">
         <p class = "men">Women's.</p>
         <img src="female.jpg" alt="female" style="width:250px;height:250px">
       </a>
     </div>
     <div class="col-md-4">
-      <a href="#" class="thumbnail">
+      <a href="../categories/electronics.php" class="thumbnail">
         <p class = "men">Electronics Department</p>      
         <img src="electronics.jpg" alt="Electronics" style="width:250;height:250px">
       </a>

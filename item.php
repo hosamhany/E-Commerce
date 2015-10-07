@@ -186,8 +186,8 @@
 <br>
 
 <?php
-  $item_id = $_GET['product_id'];
-	$query = "SELECT * FROM products WHERE id = '$item_id'";
+  $product_id = $_GET['product_id'];
+	$query = "SELECT * FROM products WHERE id = '$product_id'";
 	$item = mysqli_query($conn,$query);
 
 	if(!$item) {
@@ -197,13 +197,18 @@
 	else {
     $item = mysqli_fetch_assoc($item);
     if($item) {
-      
+
 		  echo '<h4>', $item['name'],'<br>';
 		  echo '<small>$', $item['price'], '</small></h4>';
 		  echo '<p>', $item['details'],'</p>';
+      echo $item['quantity']." left";
       ?>
-      <button onclick='purchaseItem()' class="btn btn-link"
+      <!-- <button onclick='purchaseItem()' class="btn btn-link"
       role="link" type="submit"  data-toggle="modal" data-target="#purchase_modal">Purchase Now!</button>
+ -->
+      <button onclick='addToCart()' class="btn btn-link"
+      role="link" type="submit"  id="add-cart">Add to Cart</button>
+      <div id="errors" class="label label-danger"></div>
       <?php
    }
    else {
@@ -251,6 +256,27 @@ aria-labelledby="mySmallModalLabel" aria-hidden="true">
     xhttp.open("POST", "purchases/purchase.php?product_id="+p_id,true);
     xhttp.send();
   }
+
+  function addToCart() {
+    console.log("hello there");
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      $("#add-cart").addClass("disabled");
+      if(xhttp.responseText == "1") {
+        document.getElementById("add-cart").innerHTML = "Added";
+      }
+      else {
+        document.getElementById("errors").innerHTML = "Already there";
+
+      }
+    }
+    xhttp.open("GET", "cart/add_to_cart.php?product_id="+ <?php echo $product_id ?>, true);
+    xhttp.send();
+  }
+
+  $(document).ready(function() {
+    document.getElementById("errors").innerHTML = "";
+  });
 </script>
 <?php
   
